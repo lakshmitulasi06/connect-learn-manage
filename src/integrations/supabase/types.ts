@@ -14,16 +14,214 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      attendance: {
+        Row: {
+          branch: string | null
+          created_at: string
+          date: string
+          id: string
+          marked_by: string | null
+          period: number | null
+          status: string
+          student_id: string
+          subject: string | null
+          year: number | null
+        }
+        Insert: {
+          branch?: string | null
+          created_at?: string
+          date: string
+          id?: string
+          marked_by?: string | null
+          period?: number | null
+          status: string
+          student_id: string
+          subject?: string | null
+          year?: number | null
+        }
+        Update: {
+          branch?: string | null
+          created_at?: string
+          date?: string
+          id?: string
+          marked_by?: string | null
+          period?: number | null
+          status?: string
+          student_id?: string
+          subject?: string | null
+          year?: number | null
+        }
+        Relationships: []
+      }
+      branches: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          read_at: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
+      fees: {
+        Row: {
+          amount: number
+          created_at: string
+          created_by: string | null
+          due_date: string | null
+          id: string
+          note: string | null
+          paid: number
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          due_date?: string | null
+          id?: string
+          note?: string | null
+          paid?: number
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          due_date?: string | null
+          id?: string
+          note?: string | null
+          paid?: number
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          branch: string | null
+          city: string | null
+          created_at: string
+          email: string | null
+          father_mobile: string | null
+          full_name: string | null
+          id: string
+          jvd: boolean | null
+          mobile: string | null
+          mother_mobile: string | null
+          profile_pic_url: string | null
+          role_hint: string | null
+          updated_at: string
+          year: number | null
+        }
+        Insert: {
+          branch?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          father_mobile?: string | null
+          full_name?: string | null
+          id: string
+          jvd?: boolean | null
+          mobile?: string | null
+          mother_mobile?: string | null
+          profile_pic_url?: string | null
+          role_hint?: string | null
+          updated_at?: string
+          year?: number | null
+        }
+        Update: {
+          branch?: string | null
+          city?: string | null
+          created_at?: string
+          email?: string | null
+          father_mobile?: string | null
+          full_name?: string | null
+          id?: string
+          jvd?: boolean | null
+          mobile?: string | null
+          mother_mobile?: string | null
+          profile_pic_url?: string | null
+          role_hint?: string | null
+          updated_at?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      current_user_branch: { Args: never; Returns: string }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "faculty" | "student"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +348,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "faculty", "student"],
+    },
   },
 } as const
