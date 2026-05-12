@@ -31,8 +31,8 @@ function ChatPage() {
 
   useEffect(() => {
     let q = supabase.from("profiles").select("*").neq("id", user?.id ?? "");
-    if (branch) q = q.eq("branch", branch);
-    if (year) q = q.eq("year", parseInt(year));
+    if (branch && branch !== "__all") q = q.eq("branch", branch);
+    if (year && year !== "__all") q = q.eq("year", parseInt(year));
     q.order("full_name").then(({ data }) => setPeople((data ?? []) as Profile[]));
   }, [branch, year, user?.id]);
 
